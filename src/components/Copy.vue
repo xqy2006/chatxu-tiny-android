@@ -23,10 +23,11 @@ const btnStatus = ref<"copy" | "loading" | "success" | "error">("copy");
 
 const copyToClipboard = (content: string = porps.content) => {
   btnStatus.value = "loading";
+  Android.copyToClipboard(content);
   navigator.clipboard
     .writeText(content)
     .then(() => setTimeout(() => (btnStatus.value = "success"), 150))
-    .catch(() => (btnStatus.value = "error"))
+    .catch(() => (btnStatus.value = "success"))
     .finally(() => setTimeout(() => (btnStatus.value = "copy"), 1500));
 };
 </script>

@@ -1,11 +1,13 @@
 <template>
   <div class="flex flex-col h-screen">
     <div class="flex flex-nowrap fixed w-full items-baseline top-0 px-6 py-4 bg-gray-100">
-      <div class="text-2xl font-bold">ChatXu-tiny</div>
+      <div class="text-lg font-bold">ChatXu-tiny</div>
       <div class="ml-4 text-sm text-gray-500">
-        您的智能AI助手
+        您的智能AI助手&nbsp;&nbsp;&nbsp;
       </div>
-
+      <button class="btn" style="float: right;" :disabled="isTalking" @click="rem()">
+          撤回
+        </button>
     </div>
 
     <div class="flex-1 mx-2 mt-20 mb-2" ref="chatListDom">
@@ -187,7 +189,11 @@ const sendOrSave = () => {
     sendChatMessage();
   }
 };
+const rem = () => { 
+  messageList.value.pop();
+  messageList.value.pop();
 
+};
 const clickConfig = () => {
   if (!isConfig.value) {
     messageContent.value = getAPIKey();
